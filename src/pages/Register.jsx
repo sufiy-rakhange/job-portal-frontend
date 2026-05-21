@@ -22,7 +22,6 @@ const Register = () => {
     // Handle registration logic here
     API.post("/register", form)
       .then((response) => {
-        setErrors({});
         localStorage.setItem("token", response.data.token);
         console.log("Registration successful:", response.data);
 
