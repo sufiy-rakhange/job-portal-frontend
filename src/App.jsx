@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import EditJob from './pages/EditJob'
 import Dashboard from './pages/Dashboard'
 import Navbar from './components/Navbar'
+import JobDetails from './pages/JobDetails'
 import './App.css'
 
 function App() {
@@ -20,12 +21,13 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path='/edit-job/:id' element={<EditJob />} />
-      <Route path="/add-job" element={
-        <ProtectedRoute>
-          <AddJob />
-        </ProtectedRoute>
-      } />
-    </Routes>
+        <Route path="/add-job" element={
+          <ProtectedRoute>
+            <AddJob />
+          </ProtectedRoute>
+        } />
+        <Route path="/jobs/:id" element={<JobDetails />} />
+      </Routes>
     </BrowserRouter >
 
   )
