@@ -22,7 +22,7 @@ function Dashboard() {
         setJobs(response.data.data);
       })
       .catch((error) => {
-        console.error("My jobs error:", error);
+        toast.error("Failed to load jobs");
       }).finally(() => {
         setLoading(false);
       });
@@ -75,20 +75,30 @@ function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
 
-      <div className="max-w-6xl mx-auto">
+      <div className=" max-w-7xl mx-auto">
 
         {/* Dashboard Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
 
           <div>
+
             <h1 className="text-4xl font-bold text-gray-800 mb-2">
-              My Jobs
+              Dashboard
             </h1>
 
-            <p className="text-gray-500">
-              Manage and track your posted jobs
+            <p className="text-gray-500 text-lg">
+              Manage your jobs and track activity
             </p>
+
           </div>
+
+          {/* Add Job Button */}
+          <button
+            onClick={() => navigate("/add-job")}
+            className="mt-4 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl shadow-md transition duration-200"
+          >
+            + Add New Job
+          </button>
 
         </div>
 
@@ -148,25 +158,36 @@ function Dashboard() {
           </div>
 
         </div>
+        <div className="flex items-center justify-between mb-6">
+
+          <h2 className="text-2xl font-semibold text-gray-800">
+            Recent Jobs
+          </h2>
+
+          <p className="text-gray-500">
+            {jobs.length} jobs found
+          </p>
+
+        </div>
 
         {/* Empty State */}
         {jobs.length === 0 ? (
 
-          <div className="bg-white rounded-2xl shadow-md p-12 text-center">
+          <div className="bg-white rounded-3xl shadow-md p-12 text-center">
 
-            <h2 className="text-2xl font-semibold text-gray-700 mb-3">
-              No jobs found
-            </h2>
+            <h3 className="text-2xl font-semibold text-gray-700 mb-3">
+              No Jobs Yet
+            </h3>
 
             <p className="text-gray-500 mb-6">
-              You haven't posted any jobs yet.
+              Start by creating your first job listing
             </p>
 
             <button
               onClick={() => navigate("/add-job")}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition duration-200"
             >
-              Add Your First Job
+              Add Job
             </button>
 
           </div>
@@ -174,7 +195,7 @@ function Dashboard() {
         ) : (
 
           /* Jobs Grid */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 
             {jobs.map((job) => (
 
