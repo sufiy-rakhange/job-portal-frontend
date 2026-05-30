@@ -1,7 +1,6 @@
 import { useState } from "react";
 import API from "../services/api";
 import { toast } from "react-toastify";
-import Loader from "../components/Loader";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -12,9 +11,6 @@ const Login = () => {
   const isValidEmail = form.email.includes("@");
 
   const [errors, setErrors] = useState({});
-
-    // Adding loading state to show skeletons while fetching data
-  const [loading, setLoading] = useState(true);
 
   const handleChange = (e) => {
     setForm({
@@ -37,10 +33,6 @@ const Login = () => {
         toast.error("Error logging in!");
       });
   };
-
-  if (loading) {
-    return <Loader text="Loading jobs..." />;
-  }
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
